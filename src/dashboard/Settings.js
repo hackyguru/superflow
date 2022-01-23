@@ -1,12 +1,12 @@
 import React, { useRef, useState } from "react";
 import storage from "../utils/storage";
 
-export default function Settings() {
-  const [favourites, setFavourites] = useState(
-    storage.get("favourites") == null || storage.get("favourites") == ""
-      ? []
-      : storage.get("favourites").split(",")
-  );
+export default function Settings(props) {
+  const [favourites, setFavourites] = useState(props.tags ?? []);
+  let updateTags = (tags) => {
+    setFavourites(tags);
+    props.setTags(tags);
+  };
 
   const inputRef = useRef();
 
@@ -20,7 +20,7 @@ export default function Settings() {
     let temp_fav = new Set(favourites);
     temp_fav.add(favourite);
     temp_fav = Array.from(temp_fav);
-    setFavourites(temp_fav);
+    updateTags(temp_fav);
     storage.save("favourites", temp_fav);
   }
 
@@ -28,19 +28,19 @@ export default function Settings() {
     let temp_fav = new Set(favourites);
     temp_fav.delete(favourite);
     temp_fav = Array.from(temp_fav);
-    setFavourites(temp_fav);
+    updateTags(temp_fav);
     storage.save("favourites", temp_fav);
   }
 
   function clearStorage() {
-    setFavourites([]);
+    updateTags([]);
 
     storage.clear();
   }
 
   return (
     <div className="flex flex-col">
-      <div class="flex justify-between">
+      <div className="flex justify-between">
         <div>
           <h1 className="heading text-orange-300 text-xl mt-12">Tags</h1>
         </div>
@@ -56,7 +56,7 @@ export default function Settings() {
               {favourite}
             </h1>
             <svg
-              class="w-6 h-6 text-gray-300 hover:text-red-300 mt-3 mb-3 mr-3"
+              className="w-6 h-6 text-gray-300 hover:text-red-300 mt-3 mb-3 mr-3"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -77,19 +77,20 @@ export default function Settings() {
       ) : (
         <div>
           <h5 className="text-gray-300 mt-5">
-            You dont have any favourite tags yet.
+            You dont have any favourite tags yet.//TODO
           </h5>
-          <div class="mt-10">
-            <input type="text" placeholder="Enter tag" ref={inputRef} />
-            <button
-              onClick={() => addFavourite()}
-              class="ml-3 bg-black p-3 text-white"
-            >
-              Add Tag
-            </button>
-          </div>
         </div>
       )}
+      <div className="mt-10">
+        <input type="text" placeholder="Enter tag" ref={inputRef} />
+        <button
+          onClick={() => addFavourite()}
+          className="ml-3 bg-black p-3 text-white"
+        >
+          Add Tag
+        </button>
+        {/*//TODO*/}
+      </div>
       <h1 className="heading text-orange-300 text-xl mt-10">
         Storage Preferences
         <br />
@@ -99,6 +100,7 @@ export default function Settings() {
         >
           Clear storage
         </button>
+        {/*//TODO*/}
       </h1>
     </div>
   );
