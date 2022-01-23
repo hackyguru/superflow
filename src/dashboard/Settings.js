@@ -3,7 +3,9 @@ import storage from "../utils/storage";
 
 export default function Settings() {
   const [favourites, setFavourites] = useState(
-    storage.get("favourites") == null ? [] : storage.get("favourites").split(",")
+    storage.get("favourites") == null
+      ? []
+      : storage.get("favourites").split(",")
   );
 
   const inputRef = useRef();
@@ -42,16 +44,8 @@ export default function Settings() {
         <div>
           <h1 className="heading text-orange-300 text-xl mt-12">Tags</h1>
         </div>
-        <div class="mt-10">
-          <input type="text" placeholder="Enter tag" ref={inputRef} />
-          <button
-            onClick={() => addFavourite()}
-            class="ml-3 bg-black p-3 text-white"
-          >
-            Add Tag
-          </button>
-        </div>
       </div>
+
       {favourites.length ? (
         favourites.map((favourite, index) => (
           <div
@@ -81,14 +75,27 @@ export default function Settings() {
           </div>
         ))
       ) : (
-        <h5>You dont have any favourite tags yet</h5>
+        <div>
+          <h5 className="text-gray-300 mt-5">
+            You dont have any favourite tags yet.
+          </h5>
+          <div class="mt-10">
+            <input type="text" placeholder="Enter tag" ref={inputRef} />
+            <button
+              onClick={() => addFavourite()}
+              class="ml-3 bg-black p-3 text-white"
+            >
+              Add Tag
+            </button>
+          </div>
+        </div>
       )}
       <h1 className="heading text-orange-300 text-xl mt-10">
         Storage Preferences
-        <br/>
+        <br />
         <button
-            onClick={() => clearStorage()}
-            className="mt-3 bg-black p-3 text-white"
+          onClick={() => clearStorage()}
+          className="mt-3 bg-black p-3 text-white"
         >
           Clear storage
         </button>
