@@ -3,7 +3,7 @@ import storage from "../utils/storage";
 
 export default function Settings() {
   const [favourites, setFavourites] = useState(
-    storage.get("favourites") == null
+    storage.get("favourites") == null || storage.get("favourites") == ""
       ? []
       : storage.get("favourites").split(",")
   );
