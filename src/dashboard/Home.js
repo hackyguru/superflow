@@ -98,6 +98,35 @@ export default function Home() {
           </div>{" "}
         </div>
       </div>
+      <h1 className="heading text-orange-300 text-xl mt-5 mb-3">Facts</h1>
+
+      <div className="flex-col space-y-5 mt-3">
+        <div class="p-1 shadow-xl  rounded-2xl">
+          <a
+            class="block p-6 white-glassmorphism    border sm:p-8 rounded-xl"
+            href=""
+          >
+            <div class=" sm:pr-8">
+              <p class="mt-2 text-sm desc text-gray-300">
+                Ratio between answered and unanswered questions are{" "}
+                <span className="text-orange-300">1:3</span>
+              </p>
+            </div>
+          </a>
+        </div>
+        <div class="p-1 shadow-xl  rounded-2xl">
+          <a
+            class="block p-6 white-glassmorphism    border sm:p-8 rounded-xl"
+            href=""
+          >
+            <div class=" sm:pr-8">
+              <p class="mt-2 text-sm desc text-gray-300">
+                Question <span className="text-orange-300">answer</span>
+              </p>
+            </div>
+          </a>
+        </div>
+      </div>
     </div>
   );
 }

@@ -287,11 +287,11 @@ export default function Dashboard() {
         <div class="w-full min-h-screen mb-20  md:hidden sm:block">
           <div className="flex w-full  mt-4 justify-between space-x-5">
             <div className="text-gray-300 h-14 heading text-4xl items-center mt-4">
-              {menu == 1 && <Home />}
-              {menu == 2 && <Timeline />}
-              {menu == 3 && <Todos />}
-              {menu == 4 && <Contributors />}
-              {menu == 5 && <Settings />}
+              {menu == 1 && <>Home</>}
+              {menu == 2 && <>Timeline</>}
+              {menu == 3 && <>TODOs</>}
+              {menu == 4 && <>Contributors</>}
+              {menu == 5 && <>Settings</>}
             </div>
             <div
               class="items-center px-4 -mx-2  h-14 white-glassmorphism  text-right 
@@ -308,9 +308,9 @@ export default function Dashboard() {
           </div>
           {/* Handle the page switches here */}
           {menu == 1 && <Home />}
-          {menu == 2 && <Todos />}
-          {menu == 3 && <Contributors />}
-          {menu == 4 && <Settings />}
+          {menu == 2 && <Timeline />}
+          {menu == 3 && <Todos />}
+          {menu == 4 && <Contributors />}
           {menu == 5 && <Settings />}
           <section
             id="bottom-navigation"
