@@ -1,6 +1,17 @@
 import React, { useEffect, useState } from "react";
 import axios from "../utils/axios";
 import { Link } from "react-router-dom";
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  ArcElement,
+  Tooltip,
+  Legend,
+} from "chart.js";
+import { Pie, Bar } from "react-chartjs-2";
 
 export default function Home(props) {
   let tag = props.selectedTag;
@@ -61,6 +72,145 @@ export default function Home(props) {
     for (let index = 0; index < array.length; index++) {
       await callback(array[index], index, array);
     }
+  }
+
+  function renderPieChart() {
+    if (isDataFetched) {
+      ChartJS.register(ArcElement, Tooltip, Legend);
+
+      return (
+        <Pie
+          data={{
+            labels: ["Answered", "Unanswered", "Not-answered"],
+            datasets: [
+              {
+                label: "Tag status",
+                data: [
+                  answered.percentage,
+                  unanswered.percentage,
+                  noAnswers.percentage,
+                ],
+                backgroundColor: [
+                  "rgba(75, 192, 192, 0.2)",
+                  "rgba(255, 206, 86, 0.2)",
+                  "rgba(255, 99, 132, 0.2)",
+                ],
+                borderColor: [
+                  "rgba(75, 192, 192, 1)",
+                  "rgba(255, 206, 86, 1)",
+                  "rgba(255, 99, 132, 1)",
+                ],
+                borderWidth: 1,
+              },
+            ],
+          }}
+          options={{
+            plugins: {
+              legend: {
+                labels: {
+                  color: "white",
+                },
+              },
+              tooltip: {
+                bodySpacing: 6,
+                callbacks: {
+                  label: function (context) {
+                    return context.label + ": " + context.parsed + "%";
+                  },
+                },
+              },
+            },
+          }}
+          plugins={[
+            {
+              id: "legendDistance",
+              beforeInit(chart, args, opts) {
+                const originalFit = chart.legend.fit;
+                chart.legend.fit = function fit() {
+                  originalFit.bind(chart.legend)();
+                  this.height += 15;
+                };
+              },
+            },
+          ]}
+        />
+      );
+    }
+
+    return "";
+  }
+
+  function renderBarChart() {
+    if (isDataFetched) {
+      ChartJS.register(
+        CategoryScale,
+        LinearScale,
+        BarElement,
+        Title,
+        Tooltip,
+        Legend
+      );
+
+      const options = {
+        scales: {
+          x: {
+            ticks: {
+              color: "white",
+            },
+          },
+          y: {
+            ticks: {
+              color: "white",
+            },
+          },
+        },
+        responsive: true,
+        maintainAspectRatio: false,
+        color: "white",
+        plugins: {
+          legend: {
+            display: false,
+          },
+          tooltip: {
+            bodySpacing: 6,
+            callbacks: {
+              title: function () {},
+              label: function (context) {
+                return context.label + ": " + context.formattedValue;
+              },
+            },
+          },
+        },
+      };
+
+      const labels = ["Total", "Answered", "Unanswered", "Not-answered"];
+
+      const data = {
+        labels,
+        datasets: [
+          {
+            label: "Tag stats",
+            data: [total, answered.count, unanswered.count, noAnswers.count],
+            backgroundColor: [
+              "rgba(75, 192, 192, 0.3)",
+              "rgba(127, 255,  0, 0.3)",
+              "rgba(255, 206, 86, 0.3)",
+              "rgba(255, 99, 132, 0.3)",
+            ],
+            borderColor: [
+              "rgba(75, 192, 192, 1)",
+              "rgba(127, 255,  0, 1)",
+              "rgba(255, 206, 86, 1)",
+              "rgba(255, 99, 132, 1)",
+            ],
+            borderWidth: 1,
+          },
+        ],
+      };
+
+      return <Bar options={options} data={data} />;
+    }
+    return "";
   }
 
   async function fetchData() {
@@ -148,18 +298,17 @@ export default function Home(props) {
         <div className="flex flex-wrap -mx-3 overflow-hidden">
           <div className="my-3 px-3 w-1/2 overflow-hidden lg:w-1/4 xl:w-1/4">
             <div className="p-1 shadow-xl  rounded-2xl">
-              <a
-                className="block p-6 white-glassmorphism border sm:p-8 rounded-xl"
-                href=""
-              >
+              <div className="block p-6 white-glassmorphism border sm:p-8 rounded-xl">
                 <div className="mt-7 sm:pr-8">
                   <h5 className="text-xl font-bold heading text-orange-300">
                     {total}
                   </h5>
 
-                  <p className="mt-2 text-sm desc text-gray-300">Total questions</p>
+                  <p className="mt-2 text-sm desc text-gray-300">
+                    Total Questions
+                  </p>
                 </div>
-              </a>
+              </div>
             </div>
           </div>
 
@@ -176,7 +325,7 @@ export default function Home(props) {
                   </p>
                 </div>
               </div>
-            </div>{" "}
+            </div>
           </div>
 
           <div className="my-3 px-3 w-1/2 overflow-hidden lg:w-1/4 xl:w-1/4">
@@ -192,13 +341,13 @@ export default function Home(props) {
                   </p>
                 </div>
               </div>
-            </div>{" "}
+            </div>
           </div>
 
           <div className="my-3 px-3 w-1/2 overflow-hidden lg:w-1/4 xl:w-1/4">
             <div className="p-1 shadow-xl  rounded-2xl">
               <div className="block p-6 white-glassmorphism    border sm:p-8 rounded-xl">
-                <div className="mt-7 sm:pr-8">
+                <div className="mt-7 sm:pr-8" style={{ "min-width": 201 }}>
                   <h5 className="text-xl font-bold heading text-orange-300">
                     {noAnswers.count}
                   </h5>
@@ -208,66 +357,53 @@ export default function Home(props) {
                   </p>
                 </div>
               </div>
-            </div>{" "}
+            </div>
           </div>
         </div>
         <div className="flex flex-wrap -mx-3 overflow-hidden">
           <div className="my-3 px-3 w-full overflow-hidden lg:w-1/2">
             <div className="p-1 shadow-xl  rounded-2xl">
               <div className="block p-6 white-glassmorphism    border sm:p-8 rounded-xl">
-                <div className="mt-60 sm:pr-8">
-                  <p className="mt-2 text-sm desc text-gray-300">Graph 1</p>
-                </div>
+                <div className="sm:pr-8">{renderPieChart()}</div>
               </div>
-            </div>{" "}
+            </div>
           </div>
           <div className="my-3 px-3 w-full overflow-hidden lg:w-1/2">
             <div className="p-1 shadow-xl  rounded-2xl">
-              <a
-                className="block p-6 white-glassmorphism    border sm:p-8 rounded-xl"
-                href=""
-              >
-                <div className="mt-60 sm:pr-8">
-                  <p className="mt-2 text-sm desc text-gray-300">Graph 2</p>
+              <div className="block p-6 white-glassmorphism    border sm:p-8 rounded-xl">
+                <div className="sm:pr-8" style={{ "min-height": 460 }}>
+                  {renderBarChart()}
                 </div>
-              </a>
-            </div>{" "}
+              </div>
+            </div>
           </div>
         </div>
-      <h1 className="heading text-orange-300 text-xl mt-5 mb-3">Facts</h1>
+        <h1 className="heading text-orange-300 text-xl mt-5 mb-3">Facts</h1>
 
-      <div className="flex-col space-y-5 mt-3">
-        <div className="p-1 shadow-xl  rounded-2xl">
-          <a
-            className="block p-6 white-glassmorphism    border sm:p-8 rounded-xl"
-            href=""
-          >
-            <div className=" sm:pr-8">
-              <p className="mt-2 text-sm desc text-gray-300">
-                Ratio between answered and unanswered questions are{" "}
-                <span className="text-orange-300">1:3</span>
-              </p>
+        <div className="flex-col space-y-5 mt-3">
+          <div className="p-1 shadow-xl  rounded-2xl">
+            <div className="block p-6 white-glassmorphism    border sm:p-8 rounded-xl">
+              <div className=" sm:pr-8">
+                <p className="mt-2 text-sm desc text-gray-300">
+                  Ratio between answered and unanswered questions are{" "}
+                  <span className="text-orange-300">1:3</span>
+                </p>
+              </div>
             </div>
-          </a>
-        </div>
-        <div className="p-1 shadow-xl  rounded-2xl">
-          <a
-            className="block p-6 white-glassmorphism    border sm:p-8 rounded-xl"
-            href=""
-          >
-            <div className=" sm:pr-8">
-              <p className="mt-2 text-sm desc text-gray-300">
-                Question <span className="text-orange-300">answer</span>
-              </p>
+          </div>
+          <div className="p-1 shadow-xl  rounded-2xl">
+            <div className="block p-6 white-glassmorphism    border sm:p-8 rounded-xl">
+              <div className=" sm:pr-8">
+                <p className="mt-2 text-sm desc text-gray-300">
+                  Question <span className="text-orange-300">answer</span>
+                </p>
+              </div>
             </div>
-          </a>
+          </div>
         </div>
       </div>
-    </div>
     ) : (
-      <div>
-        Fetching......
-      </div>
+      <div>Fetching......</div>
     ) //TODO
   ) : (
     <div>You have not added any tag yet</div> //TODO
