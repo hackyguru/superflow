@@ -19,7 +19,10 @@ export default function Contributors(props) {
   let isDataFetching = false;
 
   function fetchData() {
-    if (lastFetchedTag === tag || isDataFetching) {
+    if (
+      (lastFetchedTag === tag && type === props.mainState.type) ||
+      isDataFetching
+    ) {
       return;
     }
 
@@ -38,6 +41,7 @@ export default function Contributors(props) {
         lastFetchedTag = tag;
         props.updateMainState({
           tag: tag,
+          type: type,
           results: response.data,
         });
         isDataFetching = false;
