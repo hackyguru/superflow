@@ -95,7 +95,7 @@ export default function Settings(props) {
         />
         <button
           onClick={() => addFavourite()}
-          className="ml-3 glass border desc p-3 text-white border-gray-300 hover:bg-orange-400 hover:text-black"
+          className="ml-3 glass border desc p-3 text-gray-300 border-gray-300 hover:bg-orange-400 hover:text-black"
         >
           Add Tag
         </button>
@@ -112,7 +112,7 @@ export default function Settings(props) {
       <br />
       <button
         onClick={() => clearStorage()}
-        className="mt-10 glass border text-lg border-gray-300 desc p-3 text-white w-40 hover:bg-orange-400 hover:text-black"
+        className="mt-10 glass border text-lg border-gray-300 desc p-3 text-gray-300 w-40 hover:bg-orange-400 hover:text-black"
       >
         Clear storage
       </button>
