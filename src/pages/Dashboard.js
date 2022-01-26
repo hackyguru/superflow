@@ -16,21 +16,21 @@ export default function Dashboard() {
   );
   const updateTags = (tags) => setTags(tags);
   const isMobile = useMediaQuery({ query: `(max-width: 760px)` });
-  const [homepageResults, setHomePageResults] = useState(null);
-  const [timelinePageResults, setTimelinePageResults] = useState(null);
-  const [todoPageResults, setTodoPageResults] = useState(null);
-  const [contributorsPageResults, setContributorsPageResults] = useState(null);
+  const [homepageResults, setHomePageResults] = useState(false);
+  const [timelinePageResults, setTimelinePageResults] = useState(false);
+  const [todoPageResults, setTodoPageResults] = useState(false);
+  const [contributorsPageResults, setContributorsPageResults] = useState(false);
 
   function updateHomePageResults(results) {
     setHomePageResults(results);
   }
 
   function updateTimelinePageResults(results) {
-    setHomePageResults(results);
+    setTimelinePageResults(results);
   }
 
   function updateContributorsPageResults(results) {
-    setHomePageResults(results);
+    setContributorsPageResults(results);
   }
 
   function updateTodoPageResults(results) {
