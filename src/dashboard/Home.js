@@ -303,7 +303,6 @@ export default function Home(props) {
                   <h5 className="text-xl font-bold heading text-orange-300">
                     {total}
                   </h5>
-
                   <p className="mt-2 text-sm desc text-gray-300">
                     Total Questions
                   </p>
