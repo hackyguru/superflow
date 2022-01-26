@@ -17,9 +17,24 @@ export default function Dashboard() {
   const updateTags = (tags) => setTags(tags);
   const isMobile = useMediaQuery({ query: `(max-width: 760px)` });
   const [homepageResults, setHomePageResults] = useState(null);
+  const [timelinePageResults, setTimelinePageResults] = useState(null);
+  const [todoPageResults, setTodoPageResults] = useState(null);
+  const [contributorsPageResults, setContributorsPageResults] = useState(null);
 
   function updateHomePageResults(results) {
     setHomePageResults(results);
+  }
+
+  function updateTimelinePageResults(results) {
+    setHomePageResults(results);
+  }
+
+  function updateContributorsPageResults(results) {
+    setHomePageResults(results);
+  }
+
+  function updateTodoPageResults(results) {
+    setTodoPageResults(results);
   }
 
   function updateSelectedTag(tag) {
@@ -318,9 +333,27 @@ export default function Dashboard() {
                 updateMainState={updateHomePageResults}
               />
             )}
-            {menu == 2 && <Timeline selectedTag={selectedTag} />}
-            {menu == 3 && <Todos selectedTag={selectedTag} />}
-            {menu == 4 && <Contributors selectedTag={selectedTag} />}
+            {menu == 2 && (
+              <Timeline
+                selectedTag={selectedTag}
+                mainState={timelinePageResults}
+                updateMainState={updateTimelinePageResults}
+              />
+            )}
+            {menu == 3 && (
+              <Todos
+                selectedTag={selectedTag}
+                mainState={todoPageResults}
+                updateMainState={updateTodoPageResults}
+              />
+            )}
+            {menu == 4 && (
+              <Contributors
+                selectedTag={selectedTag}
+                mainState={contributorsPageResults}
+                updateMainState={updateContributorsPageResults}
+              />
+            )}
             {menu == 5 && <Settings tags={tags} setTags={updateTags} />}
           </>
         )}
@@ -340,9 +373,27 @@ export default function Dashboard() {
                     updateMainState={updateHomePageResults}
                   />
                 )}
-                {menu == 2 && <Timeline selectedTag={selectedTag} />}
-                {menu == 3 && <Todos selectedTag={selectedTag} />}
-                {menu == 4 && <Contributors selectedTag={selectedTag} />}
+                {menu == 2 && (
+                  <Timeline
+                    selectedTag={selectedTag}
+                    mainState={timelinePageResults}
+                    updateMainState={updateTimelinePageResults}
+                  />
+                )}
+                {menu == 3 && (
+                  <Todos
+                    selectedTag={selectedTag}
+                    mainState={todoPageResults}
+                    updateMainState={updateTodoPageResults}
+                  />
+                )}
+                {menu == 4 && (
+                  <Contributors
+                    selectedTag={selectedTag}
+                    mainState={contributorsPageResults}
+                    updateMainState={updateContributorsPageResults}
+                  />
+                )}
                 {menu == 5 && <Settings tags={tags} setTags={updateTags} />}
               </div>
               {tags.length ? (
