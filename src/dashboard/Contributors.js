@@ -54,7 +54,7 @@ export default function Contributors(props) {
     <div>
       <select
         onChange={(e) => setType(e.target.value)}
-        className={"mr-4 mb-3"}
+        className="mt-3 mb-6 p-2 heading text-white rounded-lg glass border border-gray-300 shadow-lg"
         defaultValue={type}
       >
         <option value="all_time">All time</option>

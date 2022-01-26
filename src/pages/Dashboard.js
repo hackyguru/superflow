@@ -295,7 +295,7 @@ export default function Dashboard() {
           </div>
           {tags.length ? (
             <div
-              className="items-center px-4 -mx-2  h-14 white-glassmorphism  text-right 
+              className="items-center px-4 -mx-2  h-14   text-right 
             py-3 rounded-xl hidden md:flex"
             >
               {/* <Selection /> */}
@@ -315,7 +315,7 @@ export default function Dashboard() {
           ) : (
             <button
               onClick={() => setMenu(5)}
-              className="bg-black text-white px-3"
+              className="p-3 desc  text-gray-300 rounded-lg glass border border-gray-300 shadow-lg hover:bg-orange-400 hover:text-black"
             >
               Add tag
             </button>
@@ -398,12 +398,12 @@ export default function Dashboard() {
               </div>
               {tags.length ? (
                 <div
-                  className="items-center px-4 -mx-2  h-14 white-glassmorphism  text-right
+                  className="items-center px-4 -mx-2  h-14   text-right
             py-3 rounded-xl hidden md:flex"
                 >
                   {/* <Selection /> */}
                   <select
-                    className="ml-5 p-2 heading text-white rounded-lg glass border border-gray-300 shadow-lg"
+                    className="ml-5 p-2 heading text-white rounded-lg glass  border border-gray-300 shadow-lg"
                     onChange={(e) => updateSelectedTag(e.target.value)}
                     defaultValue={selectedTag}
                   >

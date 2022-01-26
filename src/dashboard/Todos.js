@@ -82,7 +82,7 @@ export default function Todos(props) {
     <div>
       <select
         onChange={(e) => setType(e.target.value)}
-        className={"mr-4 mb-3"}
+        className="mt-3 mb-4 p-2 heading text-white rounded-lg glass border border-gray-300 shadow-lg"
         defaultValue={type}
       >
         <option value="no-answers">Not answered</option>
@@ -90,7 +90,7 @@ export default function Todos(props) {
       </select>
       <select
         onChange={(e) => setOrder(e.target.value)}
-        className={"mb-3"}
+        className="ml-5 p-2 heading text-white rounded-lg glass border border-gray-300 shadow-lg"
         defaultValue={order}
       >
         <option value="desc">Latest</option>
@@ -100,7 +100,7 @@ export default function Todos(props) {
         {isDataFetched ? (
           <div>
             {data.items.map((question, index) => (
-              <div class="p-1 shadow-xl  rounded-2xl" key={index}>
+              <div class="p-1 shadow-xl mb-4 mt-6  rounded-2xl" key={index}>
                 <a
                   class="block p-6 white-glassmorphism    border sm:p-8 rounded-xl"
                   href={question.link}

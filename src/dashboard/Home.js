@@ -81,7 +81,7 @@ export default function Home(props) {
       return (
         <Pie
           data={{
-            labels: ["Answered", "Unanswered", "Not-answered"],
+            labels: ["Answered", "Unanswered", "Not-accepted"],
             datasets: [
               {
                 label: "Tag status",
@@ -183,7 +183,7 @@ export default function Home(props) {
         },
       };
 
-      const labels = ["Total", "Answered", "Unanswered", "Not-answered"];
+      const labels = ["Total", "Answered", "Unanswered", "Not-accepted"];
 
       const data = {
         labels,
@@ -352,7 +352,7 @@ export default function Home(props) {
                   </h5>
 
                   <p className="mt-2 text-sm desc text-gray-300">
-                    Not answered questions
+                    Answer not accepted
                   </p>
                 </div>
               </div>
@@ -379,7 +379,7 @@ export default function Home(props) {
         </div>
         <h1 className="heading text-orange-300 text-xl mt-5 mb-3">Facts</h1>
 
-        <div className="flex-col space-y-5 mt-3">
+        <div className="flex-col space-y-5 mt-3 mb-10">
           <div className="p-1 shadow-xl  rounded-2xl">
             <div className="block p-6 white-glassmorphism    border sm:p-8 rounded-xl">
               <div className=" sm:pr-8">
@@ -394,7 +394,39 @@ export default function Home(props) {
             <div className="block p-6 white-glassmorphism    border sm:p-8 rounded-xl">
               <div className=" sm:pr-8">
                 <p className="mt-2 text-sm desc text-gray-300">
-                  Question <span className="text-orange-300">answer</span>
+                  Out of all the questions,{" "}
+                  <span className="text-orange-300">
+                    {noAnswers.percentage} %
+                  </span>{" "}
+                  have answers but none of them is accepted.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div className="p-1 shadow-xl  rounded-2xl">
+            <div className="block p-6 white-glassmorphism    border sm:p-8 rounded-xl">
+              <div className=" sm:pr-8">
+                <p className="mt-2 text-sm desc text-gray-300">
+                  The total volume of questions for this tag is{" "}
+                  <span className="text-orange-300">{total}</span> which makes
+                  this tag{" "}
+                  {total < 100 && (
+                    <span className="text-orange-300">less popular.</span>
+                  )}
+                  {total > 100 - 1000 && (
+                    <span className="text-orange-300">mildly popular.</span>
+                  )}
+                  {total > 1000 && total < 5000 && (
+                    <span className="text-orange-300">moderately popular.</span>
+                  )}
+                  {total > 5000 && total < 10000 && (
+                    <span className="text-orange-300">highly popular.</span>
+                  )}
+                  {total > 10000 && (
+                    <span className="text-orange-300">
+                      very highly popular.
+                    </span>
+                  )}
                 </p>
               </div>
             </div>

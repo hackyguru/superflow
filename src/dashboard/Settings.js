@@ -76,32 +76,41 @@ export default function Settings(props) {
         ))
       ) : (
         <div>
-          <h5 className="text-gray-300 mt-5">
-            You dont have any favourite tags yet.//TODO
+          <h5 className="text-gray-300 mt-5 desc">
+            You dont have any favourite tags yet.
           </h5>
         </div>
       )}
       <div className="mt-10">
-        <input type="text" placeholder="Enter tag" ref={inputRef} />
+        <input
+          type="text"
+          className="glass p-3 accent-orange-300 text-gray-300"
+          placeholder="Enter tag"
+          ref={inputRef}
+        />
         <button
           onClick={() => addFavourite()}
-          className="ml-3 bg-black p-3 text-white"
+          className="ml-3 glass border desc p-3 text-white border-gray-300 hover:bg-orange-400 hover:text-black"
         >
           Add Tag
         </button>
-        {/*//TODO*/}
       </div>
-      <h1 className="heading text-orange-300 text-xl mt-10">
+      <h1 className="heading text-orange-300 mt-20 text-xl">
         Storage Preferences
-        <br />
-        <button
-          onClick={() => clearStorage()}
-          className="mt-3 bg-black p-3 text-white"
-        >
-          Clear storage
-        </button>
-        {/*//TODO*/}
       </h1>
+      <br />
+      <h5 className="text-gray-300 mt-5 desc text-md">
+        All the data is stored locally in your device. If your application
+        crashes or experiences bugs - please clear the local storage and try
+        again.
+      </h5>
+      <br />
+      <button
+        onClick={() => clearStorage()}
+        className="mt-10 glass border text-lg border-gray-300 desc p-3 text-white w-40 hover:bg-orange-400 hover:text-black"
+      >
+        Clear storage
+      </button>
     </div>
   );
 }
