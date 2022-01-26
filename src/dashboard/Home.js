@@ -12,6 +12,7 @@ import {
   Legend,
 } from "chart.js";
 import { Pie, Bar } from "react-chartjs-2";
+import Loader from "../components/Loader";
 
 export default function Home(props) {
   let tag = props.selectedTag;
@@ -434,7 +435,7 @@ export default function Home(props) {
         </div>
       </div>
     ) : (
-      <div>Fetching......</div>
+      <Loader />
     ) //TODO
   ) : (
     <div>You have not added any tag yet</div> //TODO

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Loader from "../components/Loader";
 import axios from "../utils/axios";
 
 export default function Todos(props) {
@@ -161,9 +162,8 @@ export default function Todos(props) {
             </div>
           </div>
         ) : (
-          <div>Fetching....</div>
+          <Loader />
         )}
-        {/*//TODO*/}
       </div>
     </div>
   ) : (

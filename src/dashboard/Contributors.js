@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Loader from "../components/Loader";
 import axios from "../utils/axios";
 
 export default function Contributors(props) {
@@ -104,9 +105,8 @@ export default function Contributors(props) {
           </div>
         </div>
       ) : (
-        <div>Fetching....</div>
+        <Loader />
       )}
-      {/*//TODO*/}
     </div>
   ) : (
     <div>You have not added any tag yet</div> //TODO
