@@ -42,7 +42,11 @@ export default function Dashboard() {
     storage.save("lastTag", tag);
   }
 
-  return (
+  return isMobile ? (
+    <div className={"text-gray-300 desc text-center pt-80 text-xl"}>
+      View on a bigger device!
+    </div>
+  ) : (
     <div className="flex  min-h-screen">
       <div
         className="
@@ -51,10 +55,8 @@ export default function Dashboard() {
         h-screen
         px-4
         py-8
-        
         hidden
         desc
-        
         "
       >
         <img
@@ -223,7 +225,7 @@ export default function Dashboard() {
               dark:text-gray-400
               dark:hover:bg-gray-700 dark:hover:text-gray-300
               desc
-              
+
               "
               href="#"
             >
