@@ -354,7 +354,14 @@ export default function Dashboard() {
                 updateMainState={updateContributorsPageResults}
               />
             )}
-            {menu == 5 && <Settings tags={tags} setTags={updateTags} />}
+            {menu == 5 && (
+              <Settings
+                tags={tags}
+                setTags={updateTags}
+                updateSelectedTag={updateSelectedTag}
+                selectedTag={selectedTag}
+              />
+            )}
           </>
         )}
         {/* </MobileNavbar> */}
@@ -394,7 +401,14 @@ export default function Dashboard() {
                     updateMainState={updateContributorsPageResults}
                   />
                 )}
-                {menu == 5 && <Settings tags={tags} setTags={updateTags} />}
+                {menu == 5 && (
+                  <Settings
+                    tags={tags}
+                    setTags={updateTags}
+                    updateSelectedTag={updateSelectedTag}
+                    selectedTag={selectedTag}
+                  />
+                )}
               </div>
               {tags.length ? (
                 <div

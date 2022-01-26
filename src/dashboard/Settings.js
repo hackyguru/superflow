@@ -6,6 +6,10 @@ export default function Settings(props) {
   let updateTags = (tags) => {
     setFavourites(tags);
     props.setTags(tags);
+
+    if (props.selectedTag == null) {
+      props.updateSelectedTag(tags[0]);
+    }
   };
 
   const inputRef = useRef();
@@ -30,6 +34,7 @@ export default function Settings(props) {
     temp_fav = Array.from(temp_fav);
     updateTags(temp_fav);
     storage.save("favourites", temp_fav);
+    props.updateSelectedTag(temp_fav[0] ?? null);
   }
 
   function clearStorage() {
