@@ -436,7 +436,7 @@ export default function Home(props) {
       </div>
     ) : (
       <Loader />
-    ) //TODO
+    )
   ) : (
     <div>You have not added any tag yet</div> //TODO
   );

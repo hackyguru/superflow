@@ -540,8 +540,8 @@ export default function Timeline(props) {
         </div>
       </div>
     ) : (
-      <div>Fetching......</div>
-    ) //TODO
+      <Loader />
+    )
   ) : (
     <div>You have not added any tag yet</div> //TODO
   );
