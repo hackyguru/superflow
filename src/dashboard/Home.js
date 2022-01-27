@@ -347,7 +347,7 @@ export default function Home(props) {
           <div className="my-3 px-3 w-1/2 overflow-hidden lg:w-1/4 xl:w-1/4">
             <div className="p-1 shadow-xl  rounded-2xl">
               <div className="block p-6 white-glassmorphism    border sm:p-8 rounded-xl">
-                <div className="mt-7 sm:pr-8" style={{ "min-width": 201 }}>
+                <div className="mt-7 sm:pr-8" style={{ minWidth: 201 }}>
                   <h5 className="text-xl font-bold heading text-orange-300">
                     {noAnswers.count}
                   </h5>
@@ -371,7 +371,7 @@ export default function Home(props) {
           <div className="my-3 px-3 w-full overflow-hidden lg:w-1/2">
             <div className="p-1 shadow-xl  rounded-2xl">
               <div className="block p-6 white-glassmorphism    border sm:p-8 rounded-xl">
-                <div className="sm:pr-8" style={{ "min-height": 460 }}>
+                <div className="sm:pr-8" style={{ minHeight: 460 }}>
                   {renderBarChart()}
                 </div>
               </div>

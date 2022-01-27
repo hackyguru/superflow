@@ -101,29 +101,29 @@ export default function Todos(props) {
         {isDataFetched ? (
           <div>
             {data.items.map((question, index) => (
-              <div class="p-1 shadow-xl mb-4 mt-6  rounded-2xl" key={index}>
+              <div className="p-1 shadow-xl mb-4 mt-6  rounded-2xl" key={index}>
                 <a
-                  class="block p-6 white-glassmorphism    border sm:p-8 rounded-xl"
+                  className="block p-6 white-glassmorphism    border sm:p-8 rounded-xl"
                   href={question.link}
                   target="_blank"
                 >
-                  <div class=" sm:pr-8 flex-col">
-                    <p class="mt-2 text-sm desc text-orange-300">
+                  <div className=" sm:pr-8 flex-col">
+                    <p className="mt-2 text-sm desc text-orange-300">
                       {question.title}
                     </p>
                   </div>
                   <hr className="my-4" />
                   <div className="justify-between flex">
-                    <div class=" sm:pr-8 flex-col">
+                    <div className=" sm:pr-8 flex-col">
                       <a
                         href={question.owner.link}
-                        class="mt-2 text-sm desc text-gray-300"
+                        className="mt-2 text-sm desc text-gray-300"
                       >
                         by Author: {question.owner.display_name}
                       </a>
                     </div>
-                    <div class=" sm:pr-8 flex-col">
-                      <p class="mt-2 text-sm desc text-gray-300">
+                    <div className=" sm:pr-8 flex-col">
+                      <p className="mt-2 text-sm desc text-gray-300">
                         Created on:{" "}
                         {new Date(
                           question.creation_date * 1000

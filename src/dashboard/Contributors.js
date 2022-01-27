@@ -67,18 +67,18 @@ export default function Contributors(props) {
       </select>
       {isDataFetched ? (
         <div className="flex flex-col">
-          <div class="flex flex-wrap -mx-3 overflow-hidden">
+          <div className="flex flex-wrap -mx-3 overflow-hidden">
             {data.items.map((answerer, index) => (
               <div
-                class="my-3 px-3 w-full overflow-hidden lg:w-1/2"
+                className="my-3 px-3 w-full overflow-hidden lg:w-1/2"
                 key={index}
               >
-                <div class="p-1 shadow-xl  rounded-2xl">
+                <div className="p-1 shadow-xl  rounded-2xl">
                   <a
-                    class="block p-6 white-glassmorphism    border sm:p-8 rounded-xl"
+                    className="block p-6 white-glassmorphism    border sm:p-8 rounded-xl"
                     href={answerer.user.link}
                   >
-                    <div class=" sm:pr-8">
+                    <div className=" sm:pr-8">
                       <div className="flex space-x-10">
                         <img
                           src={answerer.user.profile_image}
@@ -86,13 +86,13 @@ export default function Contributors(props) {
                           alt={answerer.user.display_name}
                         />
                         <div>
-                          <p class="mt-2 text-sm desc text-gray-300">
+                          <p className="mt-2 text-sm desc text-gray-300">
                             Name: {answerer.user.display_name}
                           </p>
-                          <p class="mt-2 text-sm desc text-gray-300">
+                          <p className="mt-2 text-sm desc text-gray-300">
                             Post count: {answerer.post_count}
                           </p>
-                          <p class="mt-2 text-sm desc text-gray-300">
+                          <p className="mt-2 text-sm desc text-gray-300">
                             Score: {answerer.score}
                           </p>
                         </div>
