@@ -24,7 +24,10 @@ export default function Landing() {
         >
           Launch
         </a>
-        <a className="ml-5 bg-gray-300 rounded-lg p-3 mt-10 heading text-[#181B23]">
+        <a
+          href="https://cipher-infoline.gitbook.io/superflow/"
+          className="ml-5 bg-gray-300 rounded-lg p-3 mt-10 heading text-[#181B23]"
+        >
           Documentation
         </a>
       </div>
