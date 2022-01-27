@@ -1,17 +1,16 @@
 import React, { useEffect, useState } from "react";
 import axios from "../utils/axios";
-import { Link } from "react-router-dom";
 import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  Title,
   ArcElement,
-  Tooltip,
+  BarElement,
+  CategoryScale,
+  Chart as ChartJS,
   Legend,
+  LinearScale,
+  Title,
+  Tooltip,
 } from "chart.js";
-import { Pie, Bar } from "react-chartjs-2";
+import { Bar, Pie } from "react-chartjs-2";
 import Loader from "../components/Loader";
 
 export default function Home(props) {
@@ -287,6 +286,17 @@ export default function Home(props) {
     );
   }
 
+  function calculateRatio(num_1, num_2) {
+    let num;
+    for (num = num_2; num > 1; num--) {
+      if (num_1 % num == 0 && num_2 % num == 0) {
+        num_1 = num_1 / num;
+        num_2 = num_2 / num;
+      }
+    }
+    return num_1 + ":" + num_2;
+  }
+
   useEffect(async () => {
     if (tag) {
       await fetchData();
@@ -385,8 +395,11 @@ export default function Home(props) {
             <div className="block p-6 white-glassmorphism    border sm:p-8 rounded-xl">
               <div className=" sm:pr-8">
                 <p className="mt-2 text-sm desc text-gray-300">
-                  Ratio between answered and unanswered questions are{" "}
-                  <span className="text-orange-300">1:3</span>
+                  Out of all the questions,
+                  <span className="text-orange-300">
+                    {noAnswers.percentage} %
+                  </span>
+                  have no answers.
                 </p>
               </div>
             </div>
@@ -395,10 +408,10 @@ export default function Home(props) {
             <div className="block p-6 white-glassmorphism    border sm:p-8 rounded-xl">
               <div className=" sm:pr-8">
                 <p className="mt-2 text-sm desc text-gray-300">
-                  Out of all the questions,{" "}
+                  Out of all the questions,
                   <span className="text-orange-300">
-                    {noAnswers.percentage} %
-                  </span>{" "}
+                    {unanswered.percentage} %
+                  </span>
                   have answers but none of them is accepted.
                 </p>
               </div>
@@ -408,22 +421,22 @@ export default function Home(props) {
             <div className="block p-6 white-glassmorphism    border sm:p-8 rounded-xl">
               <div className=" sm:pr-8">
                 <p className="mt-2 text-sm desc text-gray-300">
-                  The total volume of questions for this tag is{" "}
+                  The total volume of questions for this tag is
                   <span className="text-orange-300">{total}</span> which makes
-                  this tag{" "}
+                  this tag
                   {total < 100 && (
                     <span className="text-orange-300">less popular.</span>
                   )}
-                  {total > 100 - 1000 && (
+                  {total >= 100 && total < 1000 && (
                     <span className="text-orange-300">mildly popular.</span>
                   )}
-                  {total > 1000 && total < 5000 && (
+                  {total >= 1000 && total < 5000 && (
                     <span className="text-orange-300">moderately popular.</span>
                   )}
-                  {total > 5000 && total < 10000 && (
+                  {total >= 5000 && total < 10000 && (
                     <span className="text-orange-300">highly popular.</span>
                   )}
-                  {total > 10000 && (
+                  {total >= 10000 && (
                     <span className="text-orange-300">
                       very highly popular.
                     </span>

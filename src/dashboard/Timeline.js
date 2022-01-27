@@ -503,7 +503,7 @@ export default function Timeline(props) {
                   </p>
                 </div>
               </div>
-            </div>{" "}
+            </div>
           </div>
 
           <div className="my-3 px-3 w-1/2 overflow-hidden  lg:w-1/4 xl:w-1/4">
@@ -519,7 +519,7 @@ export default function Timeline(props) {
                   </p>
                 </div>
               </div>
-            </div>{" "}
+            </div>
           </div>
 
           <div className="my-3 px-3 w-1/2 overflow-hidden lg:w-1/4 xl:w-1/4">
@@ -584,7 +584,7 @@ export default function Timeline(props) {
                   </p>
                 </div>
               </div>
-            </div>{" "}
+            </div>
           </div>
         </div>
       </div>
