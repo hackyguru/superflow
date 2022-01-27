@@ -69,13 +69,12 @@ export default function Dashboard() {
         desc
         "
       >
-        <img
-          src="assets/superflow3.png"
-          className="w-1/2 text-center mb-10 ml-10"
-        />
-
         <div className="flex flex-col justify-between flex-1 mt-6">
-          <nav>
+          <nav className="fixed">
+            <img
+              src="assets/superflow3.png"
+              className="w-28 text-center mb-10 ml-4"
+            />
             <button
               className={
                 "flex items-center px-4 py-2 rounded-md " +
@@ -275,7 +274,7 @@ export default function Dashboard() {
               dark:hover:bg-gray-700 dark:hover:text-gray-300
               desc
               "
-              href="https://github.com/hackyguru/superflow"
+              href="https://github.com/autonome/superflow"
             >
               <svg
                 className="w-6 h-6"
@@ -345,7 +344,7 @@ export default function Dashboard() {
               onClick={() => setMenu(5)}
               className="p-3 desc  text-gray-300 rounded-lg glass border border-gray-300 shadow-lg hover:bg-orange-400 hover:text-black"
             >
-              Add tag
+              Get started by adding a tag
             </button>
             //TODO
           )}

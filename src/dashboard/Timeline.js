@@ -622,6 +622,8 @@ export default function Timeline(props) {
       <Loader />
     )
   ) : (
-    <div>You have not added any tag yet</div> //TODO
+    <div className="desc text-gray-300 flex justify-center mt-60">
+    You have not added any tag yet
+  </div>
   );
 }
