@@ -19,6 +19,7 @@ import { Line } from "react-chartjs-2";
 import { PolarArea } from "react-chartjs-2";
 
 import storage from "../utils/storage";
+import Loader from "../components/Loader";
 
 export default function Timeline(props) {
   let tag = props.selectedTag;
@@ -45,6 +46,12 @@ export default function Timeline(props) {
   const [unanswered, setUnanswered] = useState(
     props.mainState && tag == props.mainState.tag
       ? props.mainState.data.unanswered
+      : {}
+  );
+
+  const [createdAt, setCreatedAt] = useState(
+    props.mainState && tag == props.mainState.tag
+      ? props.mainState.data.created_at
       : {}
   );
 
@@ -108,6 +115,20 @@ export default function Timeline(props) {
     }
   }
 
+  async function fetchCreatedAt() {
+    let response = await axios.get(`questions`, {
+      params: {
+        tagged: tag,
+        sort: "creation",
+        order: "asc",
+        pagesize: 1,
+        filter: "!0WJ3YL7_.H..ZHFL0ZSaCDbpb",
+      },
+    });
+
+    return response.data.items[0].creation_date * 1000;
+  }
+
   async function fetchData() {
     if (lastFetchedTag === tag || isDataFetching) {
       return;
@@ -120,6 +141,7 @@ export default function Timeline(props) {
     let total_obj_var = {};
     let unanswered_obj_var = {};
     let not_answered_obj_var = {};
+    let created_at = null;
 
     if (
       stored_data[tag] &&
@@ -129,6 +151,7 @@ export default function Timeline(props) {
       total_obj_var = data.total;
       unanswered_obj_var = data.unanswered;
       not_answered_obj_var = data.not_answered;
+      created_at = data.created_at;
 
       is_storage_data = true;
     } else {
@@ -151,7 +174,7 @@ export default function Timeline(props) {
                     break;
                   case "questions/unanswered":
                     unanswered_obj_var[request_name] =
-                      response.data.total - noAnswers[request_name];
+                      response.data.total - not_answered_obj_var[request_name];
                     break;
                 }
               });
@@ -163,6 +186,8 @@ export default function Timeline(props) {
           setTimeout(resolve, 1500);
         });
       });
+
+      created_at = await fetchCreatedAt();
     }
 
     lastFetchedTag = tag;
@@ -170,12 +195,14 @@ export default function Timeline(props) {
     setTotal(total_obj_var);
     setNoAnswers(not_answered_obj_var);
     setUnanswered(unanswered_obj_var);
+    setCreatedAt(created_at);
     props.updateMainState({
       tag: tag,
       data: {
         total: total_obj_var,
         unanswered: unanswered_obj_var,
         not_answered: not_answered_obj_var,
+        created_at: created_at,
       },
       is_storage_data,
     });
@@ -484,11 +511,11 @@ export default function Timeline(props) {
               <div className="block p-6 white-glassmorphism    border sm:p-8 rounded-xl">
                 <div className="sm:pr-8">
                   <h5 className="text-md font-bold heading text-orange-300">
-                    30
+                    {createdAt ? new Date(createdAt).toDateString() : ""}
                   </h5>
 
                   <p className="mt-2 text-sm desc text-gray-300">
-                    Question volume / hour
+                    Tag Created at
                   </p>
                 </div>
               </div>
@@ -500,7 +527,12 @@ export default function Timeline(props) {
               <div className="block p-6 white-glassmorphism    border sm:p-8 rounded-xl">
                 <div className="sm:pr-8">
                   <h5 className="text-md font-bold heading text-orange-300">
-                    7777
+                    {createdAt
+                      ? (
+                          new Date().getFullYear() -
+                          new Date(createdAt).getFullYear()
+                        ).toString() + " years"
+                      : ""}
                   </h5>
 
                   <p className="mt-2 text-sm desc text-gray-300">Tag age</p>
@@ -514,20 +546,37 @@ export default function Timeline(props) {
               <div className="block p-6 white-glassmorphism    border sm:p-8 rounded-xl">
                 <div className="sm:pr-8">
                   <h5 className="text-md font-bold heading text-green-300">
-                    <svg
-                      className="w-6 h-6"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"
-                      ></path>
-                    </svg>
+                    {total.months1_3 > total.months4_6 ? (
+                      <svg
+                        className="w-6 h-6"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
+                          d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"
+                        ></path>
+                      </svg>
+                    ) : (
+                      <svg
+                        class="w-6 h-6 text-red-300"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg%22%3E"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
+                          d="M13 17h8m0 0V9m0 8l-8-8-4 4-6-6"
+                        ></path>
+                      </svg>
+                    )}
                   </h5>
 
                   <p className="mt-2 text-sm desc text-gray-300">
