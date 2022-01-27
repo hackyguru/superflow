@@ -7,7 +7,7 @@ export default function Settings(props) {
     setFavourites(tags);
     props.setTags(tags);
 
-    if (props.selectedTag == null) {
+    if (props.selectedTag == null || props.selectedTag == "") {
       props.updateSelectedTag(tags[0]);
     }
   };
@@ -117,7 +117,11 @@ export default function Settings(props) {
       </h5>
       <br />
       <button
-        onClick={() => clearStorage()}
+        onClick={() => {
+          if (window.confirm("Are you sure?")) {
+            clearStorage();
+          }
+        }}
         className="mt-10 glass border text-lg border-gray-300 desc p-3 text-gray-300 w-40 hover:bg-orange-400 hover:text-black"
       >
         Clear storage
