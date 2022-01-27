@@ -396,7 +396,7 @@ export default function Home(props) {
               <div className=" sm:pr-8">
                 <p className="mt-2 text-sm desc text-gray-300">
                   Out of all the questions,
-                  <span className="text-orange-300">
+                  <span className="text-orange-300 mx-1">
                     {noAnswers.percentage} %
                   </span>
                   have no answers.
@@ -409,7 +409,7 @@ export default function Home(props) {
               <div className=" sm:pr-8">
                 <p className="mt-2 text-sm desc text-gray-300">
                   Out of all the questions,
-                  <span className="text-orange-300">
+                  <span className="text-orange-300 mx-1">
                     {unanswered.percentage} %
                   </span>
                   have answers but none of them is accepted.
@@ -422,22 +422,28 @@ export default function Home(props) {
               <div className=" sm:pr-8">
                 <p className="mt-2 text-sm desc text-gray-300">
                   The total volume of questions for this tag is
-                  <span className="text-orange-300">{total}</span> which makes
-                  this tag
+                  <span className="text-orange-300 ml-1">{total}</span> which
+                  makes this tag
                   {total < 100 && (
-                    <span className="text-orange-300">less popular.</span>
+                    <span className="text-orange-300 ml-1">less popular.</span>
                   )}
                   {total >= 100 && total < 1000 && (
-                    <span className="text-orange-300">mildly popular.</span>
+                    <span className="text-orange-300 ml-1">
+                      mildly popular.
+                    </span>
                   )}
                   {total >= 1000 && total < 5000 && (
-                    <span className="text-orange-300">moderately popular.</span>
+                    <span className="text-orange-300 ml-1">
+                      moderately popular.
+                    </span>
                   )}
                   {total >= 5000 && total < 10000 && (
-                    <span className="text-orange-300">highly popular.</span>
+                    <span className="text-orange-300 ml-1">
+                      highly popular.
+                    </span>
                   )}
                   {total >= 10000 && (
-                    <span className="text-orange-300">
+                    <span className="text-orange-300 ml-1">
                       very highly popular.
                     </span>
                   )}
