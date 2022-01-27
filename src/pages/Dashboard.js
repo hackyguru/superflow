@@ -254,7 +254,9 @@ export default function Dashboard() {
                 ></path>
               </svg>
 
-              <span className="mx-4 font-medium">Guide</span>
+              <a href="https://cipher-infoline.gitbook.io/superflow/">
+                <span className="mx-4 font-medium">Guide</span>
+              </a>
             </button>
 
             <button
