@@ -34,12 +34,18 @@ export default function Settings(props) {
     temp_fav = Array.from(temp_fav);
     updateTags(temp_fav);
     storage.save("favourites", temp_fav);
+
+    let current_results = JSON.parse(storage.get("timeline_data") ?? "{}");
+    if (current_results[favourite]) {
+      delete current_results[favourite];
+      storage.save("timeline_data", JSON.stringify(current_results));
+    }
     props.updateSelectedTag(temp_fav[0] ?? null);
   }
 
   function clearStorage() {
     updateTags([]);
-
+    props.updateSelectedTag("");
     storage.clear();
   }
 

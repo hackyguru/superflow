@@ -27,6 +27,16 @@ export default function Dashboard() {
 
   function updateTimelinePageResults(results) {
     setTimelinePageResults(results);
+
+    if (!results.is_storage_data) {
+      let current_results = JSON.parse(storage.get("timeline_data") ?? "{}");
+      current_results[results.tag] = {
+        data: results.data,
+        time: new Date().getTime(),
+      };
+
+      storage.save("timeline_data", JSON.stringify(current_results));
+    }
   }
 
   function updateContributorsPageResults(results) {
