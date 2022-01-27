@@ -82,7 +82,7 @@ export default function Home(props) {
       return (
         <Pie
           data={{
-            labels: ["Answered", "Unanswered", "Not-accepted"],
+            labels: ["Answered", "Not-accepted", "Unanswered"],
             datasets: [
               {
                 label: "Tag status",
@@ -184,7 +184,7 @@ export default function Home(props) {
         },
       };
 
-      const labels = ["Total", "Answered", "Unanswered", "Not-accepted"];
+      const labels = ["Total", "Answered", "Not-accepted", "Unanswered"];
 
       const data = {
         labels,
@@ -337,7 +337,7 @@ export default function Home(props) {
                   </h5>
 
                   <p className="mt-2 text-sm desc text-gray-300">
-                    Unanswered questions
+                    Answer not accepted
                   </p>
                 </div>
               </div>
@@ -353,7 +353,7 @@ export default function Home(props) {
                   </h5>
 
                   <p className="mt-2 text-sm desc text-gray-300">
-                    Answer not accepted
+                    Unanswered questions
                   </p>
                 </div>
               </div>

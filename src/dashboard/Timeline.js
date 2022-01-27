@@ -236,13 +236,13 @@ export default function Timeline(props) {
             backgroundColor: "rgba(75, 192, 192, 0.5)",
           },
           {
-            label: "Unanswered",
+            label: "Not-accepted",
             data: Object.values(unanswered).reverse(),
             borderColor: "rgba(255, 206, 86, 0.5)",
             backgroundColor: "rgba(255, 206, 86, 0.5)",
           },
           {
-            label: "Not-answered",
+            label: "Unanswered ",
             data: Object.values(noAnswers).reverse(),
             borderColor: "rgba(255, 99, 132, 0.5)",
             backgroundColor: "rgba(255, 99, 132, 0.5)",
@@ -290,15 +290,12 @@ export default function Timeline(props) {
         color: "white",
         plugins: {
           legend: {
-            display: false,
+            display: true,
           },
           tooltip: {
             bodySpacing: 6,
             callbacks: {
               title: function () {},
-              label: function (context) {
-                return context.label + ": " + context.formattedValue;
-              },
             },
           },
         },
@@ -322,14 +319,14 @@ export default function Timeline(props) {
             borderWidth: 1,
           },
           {
-            label: "Unanswered",
+            label: "Not-accepted",
             data: Object.values(unanswered).reverse(),
             backgroundColor: ["rgba(255, 206, 86, 0.3)"],
             borderColor: ["rgba(255, 206, 86, 1)"],
             borderWidth: 1,
           },
           {
-            label: "Not-answered",
+            label: "Unanswered",
             data: Object.values(noAnswers).reverse(),
             backgroundColor: ["rgba(255, 99, 132, 0.3)"],
             borderColor: ["rgba(255, 99, 132, 1)"],

@@ -7,7 +7,7 @@ export default function Todos(props) {
   let lastFetchedTag = props.mainState ? props.mainState.tag : null;
 
   const [type, setType] = useState(
-    props.mainState ? props.mainState.type : "no-answers"
+    props.mainState ? props.mainState.type : "unanswered"
   );
   const [order, setOrder] = useState(
     props.mainState ? props.mainState.order : "desc"
@@ -86,8 +86,8 @@ export default function Todos(props) {
         className="mt-3 mb-4 p-2 heading text-white rounded-lg glass border border-gray-300 shadow-lg"
         defaultValue={type}
       >
-        <option value="no-answers">Not answered</option>
-        <option value="unanswered">Unanswered</option>
+        <option value="unanswered">Not accepted</option>
+        <option value="no-answers">Unanswered</option>
       </select>
       <select
         onChange={(e) => setOrder(e.target.value)}
@@ -107,10 +107,19 @@ export default function Todos(props) {
                   href={question.link}
                   target="_blank"
                 >
-                  <div className=" sm:pr-8 flex-col">
-                    <p className="mt-2 text-sm desc text-orange-300">
-                      {question.title}
-                    </p>
+                  <div className="flex justify-between">
+                    <div className=" sm:pr-8 flex-col">
+                      <p className="mt-2 text-sm desc text-orange-300">
+                        {question.title}
+                      </p>
+                    </div>
+                    {type === "unanswered" && (
+                      <div className=" sm:pr-8 flex-col">
+                        <p className="mt-2 text-sm desc text-gray-300">
+                          Answer count: {question.answer_count}
+                        </p>
+                      </div>
+                    )}
                   </div>
                   <hr className="my-4" />
                   <div className="justify-between flex">
