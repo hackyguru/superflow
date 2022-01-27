@@ -259,7 +259,7 @@ export default function Dashboard() {
               </a>
             </button>
 
-            <button
+            <a
               className="
               flex
               items-center
@@ -275,7 +275,7 @@ export default function Dashboard() {
               dark:hover:bg-gray-700 dark:hover:text-gray-300
               desc
               "
-              href="#"
+              href="https://github.com/hackyguru/superflow"
             >
               <svg
                 className="w-6 h-6"
@@ -293,7 +293,7 @@ export default function Dashboard() {
               </svg>
 
               <span className="mx-4 font-medium">Github</span>
-            </button>
+            </a>
           </nav>
         </div>
       </div>
