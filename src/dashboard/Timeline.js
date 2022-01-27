@@ -492,14 +492,90 @@ export default function Timeline(props) {
         <div className="flex flex-wrap -mx-3 overflow-hidden">
           <div className="my-3 px-3 w-1/2 overflow-hidden lg:w-1/4 xl:w-1/4">
             <div className="p-1 shadow-xl  rounded-2xl">
-              <div className="block p-6 white-glassmorphism border sm:p-8 rounded-xl">
-                <div className=" sm:pr-8">
-                  <h5 className="text-md font-bold heading text-orange-300">
-                    500 min
+              <div className="block p-6 white-glassmorphism    border sm:p-8 rounded-xl">
+                <div className="sm:pr-8">
+                  <h5 className="text-md font-bold heading text-green-300">
+                    {total.months1_3 > total.months4_6 ? (
+                      <svg
+                        className="w-6 h-6"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
+                          d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"
+                        ></path>
+                      </svg>
+                    ) : (
+                      <svg
+                        className="w-6 h-6 text-red-300"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg%22%3E"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
+                          d="M13 17h8m0 0V9m0 8l-8-8-4 4-6-6"
+                        ></path>
+                      </svg>
+                    )}
                   </h5>
 
                   <p className="mt-2 text-sm desc text-gray-300">
-                    Median answer time
+                    Tag health over time
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="my-3 px-3 w-1/2 overflow-hidden lg:w-1/4 xl:w-1/4">
+            <div className="p-1 shadow-xl  rounded-2xl">
+              <div className="block p-6 white-glassmorphism    border sm:p-8 rounded-xl">
+                <div className="sm:pr-8">
+                  <h5 className="text-md font-bold heading text-green-300">
+                    {unanswered.months1_3 + noAnswers.months1_3 <
+                    unanswered.months4_6 + noAnswers.months4_6 ? (
+                      <svg
+                        className="w-6 h-6"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
+                          d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"
+                        ></path>
+                      </svg>
+                    ) : (
+                      <svg
+                        className="w-6 h-6 text-red-300"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg%22%3E"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
+                          d="M13 17h8m0 0V9m0 8l-8-8-4 4-6-6"
+                        ></path>
+                      </svg>
+                    )}
+                  </h5>
+
+                  <p className="mt-2 text-sm desc text-gray-300">
+                    Tag supportiveness
                   </p>
                 </div>
               </div>
@@ -536,52 +612,6 @@ export default function Timeline(props) {
                   </h5>
 
                   <p className="mt-2 text-sm desc text-gray-300">Tag age</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="my-3 px-3 w-1/2 overflow-hidden lg:w-1/4 xl:w-1/4">
-            <div className="p-1 shadow-xl  rounded-2xl">
-              <div className="block p-6 white-glassmorphism    border sm:p-8 rounded-xl">
-                <div className="sm:pr-8">
-                  <h5 className="text-md font-bold heading text-green-300">
-                    {total.months1_3 > total.months4_6 ? (
-                      <svg
-                        className="w-6 h-6"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth="2"
-                          d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"
-                        ></path>
-                      </svg>
-                    ) : (
-                      <svg
-                        class="w-6 h-6 text-red-300"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg%22%3E"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth="2"
-                          d="M13 17h8m0 0V9m0 8l-8-8-4 4-6-6"
-                        ></path>
-                      </svg>
-                    )}
-                  </h5>
-
-                  <p className="mt-2 text-sm desc text-gray-300">
-                    Tag health over time
-                  </p>
                 </div>
               </div>
             </div>
