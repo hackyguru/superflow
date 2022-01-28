@@ -337,7 +337,6 @@ export default function Dashboard() {
                   </option>
                 ))}
               </select>
-              {/*//TODO*/}
             </div>
           ) : (
             <button
@@ -346,7 +345,6 @@ export default function Dashboard() {
             >
               Get started by adding a tag
             </button>
-            //TODO
           )}
         </div>
 
@@ -448,7 +446,6 @@ export default function Dashboard() {
                     onChange={(e) => updateSelectedTag(e.target.value)}
                     defaultValue={selectedTag}
                   >
-                    {/*//TODO*/}
                     {tags.map((tag, index) => (
                       <option key={index} value={tag}>
                         {tag}
@@ -462,7 +459,7 @@ export default function Dashboard() {
                   className="bg-black text-white px-3"
                 >
                   Add tag
-                </button> //TODO
+                </button>
               )}
             </div>
             <section

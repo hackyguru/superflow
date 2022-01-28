@@ -21,7 +21,9 @@ function getTags() {
 }
 
 function getLastTag() {
-  return get("lastTag") == null || get("lastTag") == ""
+  return get("lastTag") == null ||
+    get("lastTag") == "" ||
+    get("lastTag") === "null"
     ? null
     : get("lastTag");
 }
